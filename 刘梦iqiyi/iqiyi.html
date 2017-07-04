@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>iqiyi</title>
+	<style>
+	body,ul,li{margin:0;padding:0;}
+	ul{list-style: none;}
+	#wrap{width:100%;
+		  height:500px;
+		  border:1px solid red;
+		  position:relative;
+		  margin-top: 100px;
+		}
+	.img{
+		width: 100%;
+		height:100%;
+	}
+	img{width:100%;
+		height:100%;}
+	#list{width:218px;
+		  height: 330px;
+		  background-color: rgba(0,0,0,0.8);
+		  position:absolute;
+		  right:100px;
+		  bottom:80px;
+		  
+		}
+	#list li{width:188px;
+			 height: 31px;
+			 font-size: 14px;
+			 margin: 2px 0px 2px 0px;
+			 padding:0px 15px;
+			 /*background-color:#5fb607;*/
+			 text-align: center;
+			 line-height: 31px;
+			 color:white;
+			}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div class="img">
+			<img id="img" src="img/a.jpg" alt="">
+		</div>
+		<ul id="list">
+			<li>first</li>
+			<li>second</li>
+			<li>third</li>
+			<li>forth</li>
+			<li>fifth</li>
+			<li>first</li>
+			<li>second</li>
+			<li>third</li>
+			<li>forth</li>
+			<li>fifth</li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+window.onload = function(){
+	var oimg = document.getElementById('img');
+	var olist = document.getElementById('list');
+	var oli = document.getElementsByTagName('li');
+
+	var arrpic = ['img/a.jpg','img/b.jpg','img/c.jpg','img/d.jpg','img/e.jpg','img/f.jpg','img/g.jpg','img/h.jpg','img/i.jpg','img/j.jpg'];
+
+	var time,a=0;
+	// for(var i=0;i<arrpic.length;i++){
+	// 	oli[i].num = i;
+	// 	oli[i].onmouseover = function(){
+	// 		oimg.src = arrpic[this.num];
+	// 	}
+
+	// }
+	for(var i=0;i<10;i++){
+		oli[i].ber = i;
+		oli[i].onmouseover = function(){
+			clearInterval(interval);
+			clearInterval(time);
+			
+			for(var i=0;i<10;i++){
+				oli[i].style.backgroundColor = 'rgba(0,0,0,0.8)'; 
+			}
+			oimg.src = arrpic[this.ber];
+				this.style.backgroundColor = '#5fb607'; 
+				a=this.ber;
+		}
+		oli[i].onmouseout = function(){
+			clearInterval(time);
+			this.style.backgroundColor = 'rgba(0,0,0,0.8)';
+			 time = setInterval(function(){
+			 	oimg.src = arrpic[a];
+			 	for(var i=0;i<10;i++){
+					//先清除所有，把颜色改成原来的颜色
+					oli[i].style.backgroundColor = '#5fb607'; 
+				}
+				//需要哪个再重新给需要的添加不同颜色
+				oli[a].style.backgroundColor = 'rgba(0,0,0,0.8)';
+				a++;
+				if(a==10){
+					a=0;
+				}
+				console.log('a');
+			},1000)
+		}
+	}
+
+	// var a=0;
+	// setInterval(function(){
+	// 	a++;
+	// 	oimg.src = arrpic[a];
+	// 	if(a==4){
+	// 		a=-1;
+	// 	}
+	// 	},2000);
+	
+	var interval = setInterval(function(){
+		oimg.src = arrpic[a];
+		for(var i=0;i<10;i++){
+			//先清除所有，把颜色改成原来的颜色
+			oli[i].style.backgroundColor = 'rgba(0,0,0,0.8)'; 
+		}
+		//需要哪个再重新给需要的添加不同颜色
+		oli[a].style.backgroundColor = '#5fb607';
+		a++;
+		if(a==10){
+			a=0;
+		}
+	},1000)
+}
+</script>
+</html>
